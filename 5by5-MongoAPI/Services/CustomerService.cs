@@ -22,10 +22,18 @@ namespace _5by5_MongoAPI.Services
         public Customer Get(string id) =>
             _customers.Find<Customer>(customer => customer.Id == id).FirstOrDefault();
 
-        public Customer Create(Customer customer)
+        public Customer Post(Customer customer)
         {
             _customers.InsertOne(customer);
             return customer;
         }
+
+        public Customer Update(Customer customerIn)
+        {
+            _customers.ReplaceOne(c => c.Id == customerIn.Id, customerIn);
+            return customerIn;
+        }
+
+        public void Delete(string id) => _customers.DeleteOne(c => c.Id == id);
     }
 }

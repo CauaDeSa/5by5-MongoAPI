@@ -22,7 +22,7 @@ namespace _5by5_MongoAPI.Services
         public Address Get(string id) =>
             _addresses.Find<Address>(address => address.Id == id).FirstOrDefault();
 
-        public Address Create(Address address)
+        public Address Post(Address address)
         {
             _addresses.InsertOne(address);
             return address;
